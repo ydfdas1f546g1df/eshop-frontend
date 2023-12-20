@@ -21,9 +21,8 @@ pipeline {
             }
             }
         stage('Build') {
-            agent any
-            options {
-                retry(0)
+            agent{
+                label 'docker'
             }
             steps {
                 docker 'build -t $ProjectPush .'
@@ -31,8 +30,7 @@ pipeline {
         }
         stage('Deploy') {
             agent any
-            options {
-            }
+
             steps{
                 script {
                     docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
