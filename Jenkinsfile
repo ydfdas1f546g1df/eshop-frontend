@@ -1,9 +1,9 @@
 pipeline {
     environment {
-        $ProjectURL = "registry.gitlab.internal.kuelling-sh.com:443"
-        $ProjectPush = 'registry.gitlab.internal.kuelling-sh.com:443/webshop/frontend'
-        $DockerUser = 'gitlab+deploy-token-1'
-        $Token = ''
+        ProjectURL = "registry.gitlab.internal.kuelling-sh.com:443"
+        ProjectPush = 'registry.gitlab.internal.kuelling-sh.com:443/webshop/frontend'
+        DockerUser = 'gitlab+deploy-token-2'
+        Token = 'nj1aSsNWRUFyWGd6p4Ua'
     }
 
     agent none
