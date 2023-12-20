@@ -16,15 +16,18 @@ pipeline {
                     label 'docker'
         }}
             steps {
-                npm 'install'
-                npm 'build'
+                script{
+                    npm 'install'
+                }
+                script{
+                    npm 'build'
+                }
+                
+                
             }
             }
         stage('Build') {
             agent any
-            options {
-                retry(0)
-            }
             steps {
                 docker 'build -t $ProjectPush .'
             }
