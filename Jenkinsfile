@@ -16,26 +16,21 @@ pipeline {
                     label 'docker'
         }}
             steps {
-                script{
-                    npm 'install'
-                }
-                script{
-                    npm 'build'
-                }
-                
-                
+                npm 'install'
+                npm 'build'
             }
             }
         stage('Build') {
-            agent any
+            agent{
+                label 'docker'
+            }
             steps {
                 docker 'build -t $ProjectPush .'
             }
         }
         stage('Deploy') {
             agent any
-            options {
-            }
+
             steps{
                 script {
                     docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
