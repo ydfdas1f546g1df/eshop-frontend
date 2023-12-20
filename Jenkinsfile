@@ -58,7 +58,7 @@ pipeline {
         stage('Deploy') {
             steps{
                 script {
-                    docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
+                    withRegistry("$ProjectURL", "$DockerUser", "$Token") {
                         docker.image("$ProjectPush":${env.BUILD_ID}).push()
                     }
                 }
