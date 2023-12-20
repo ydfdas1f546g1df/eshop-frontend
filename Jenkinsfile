@@ -2,8 +2,7 @@ pipeline {
     environment {
         ProjectURL = "registry.gitlab.internal.kuelling-sh.com:443"
         ProjectPush = 'registry.gitlab.internal.kuelling-sh.com:443/webshop/frontend'
-        DockerUser = 'gitlab+deploy-token-2'
-        Token = 'nj1aSsNWRUFyWGd6p4Ua'
+        DeployCreds = credentials('deployFrontend')
     }
 
     agent {
@@ -44,7 +43,7 @@ pipeline {
             steps {
                 sh 'npm install'
                 sh 'npm run build'
-            }
+            }name react-django-docker-
         }
 
         stage('Build-Container') {
@@ -55,14 +54,17 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Publish') {
             steps{
-                script {
-                    docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
-                        docker.image("$ProjectPush:${env.BUILD_ID}").push()
-                    }
-                }
+                sh 'echo $TokDeployCreds_PSW | sudo docker login -u $TokDeployCreds_USR --password-stdin'
+                echo 'Login Completed' 
+                sh 'docker push ${ProjectPush}:$BUILD_NUMBER'                   
             }
+        }
+    }
+    post{
+        always{
+            sh 'docker logout'
         }
     }
 }
