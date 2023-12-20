@@ -2,7 +2,7 @@ pipeline {
     environment {
         $ProjectURL = "registry.gitlab.internal.kuelling-sh.com:443"
         $ProjectPush = 'registry.gitlab.internal.kuelling-sh.com:443/webshop/frontend'
-        $DocekrUser = 'gitlab+deploy-token-1'
+        $DockerUser = 'gitlab+deploy-token-1'
         $Token = ''
     }
 
@@ -33,11 +33,13 @@ pipeline {
             agent any
             options {
             }
-            script {
+            steps{
+                script {
                     docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
                         docker.image("$ProjectPush").push()
                     }
                 }
+            }
         }
         }
     }
