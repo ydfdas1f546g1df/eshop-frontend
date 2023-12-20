@@ -6,31 +6,54 @@ pipeline {
         Token = 'nj1aSsNWRUFyWGd6p4Ua'
     }
 
-    agent none
+    agent {
+        label 'docker'
+    }
 
     stages {
-        stage('Prepare') {
+        stage('Clear Workspace') {
+            steps {
+                // Delete the workspace before running any other steps
+                deleteDir()
+            }
+        }   
+        stage('Prepare'){
+            steps{
+                checkout scmGit(
+                    branches: [[name: '*/master']], 
+                    extensions: [],
+                    userRemoteConfigs: [
+                        [   
+                            credentialsId: 'git',
+                            url: 'git@gitlab.internal.kuelling-sh.com:webshop/frontend.git'
+                        ]
+                    ]
+                )
+            }
+        }
+
+        stage('Build-Code') {
             agent {
                 docker {
                     image 'node:21.4.0-alpine'
                     label 'docker'
-        }}
-            steps {
-                npm 'install'
-                npm 'build'
-            }
-            }
-        stage('Build') {
-            agent{
-                label 'docker'
+                    args '-v ${PWD}:/workspace -w /workspace'
+                    reuseNode true
+                }
             }
             steps {
-                docker 'build -t $ProjectPush .'
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
-        stage('Deploy') {
-            agent any
 
+        stage('Build-Container') {
+            steps {
+                image 'build -t $ProjectPush .'
+            }
+        }
+
+        stage('Deploy') {
             steps{
                 script {
                     docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
@@ -39,5 +62,5 @@ pipeline {
                 }
             }
         }
-        }
     }
+}
