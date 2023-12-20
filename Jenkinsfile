@@ -43,7 +43,7 @@ pipeline {
             steps {
                 sh 'npm install'
                 sh 'npm run build'
-            }name react-django-docker-
+            }
         }
 
         stage('Build-Container') {
