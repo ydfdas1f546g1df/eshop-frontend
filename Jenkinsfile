@@ -49,7 +49,9 @@ pipeline {
 
         stage('Build-Container') {
             steps {
-                image 'build -t $ProjectPush .'
+                script{
+                    docker.build("${ProjectPush}:${env.BUILD_ID}")
+                }
             }
         }
 
@@ -57,7 +59,7 @@ pipeline {
             steps{
                 script {
                     docker.withRegistry("$ProjectURL", "$DockerUser", "$Token") {
-                        docker.image("$ProjectPush").push()
+                        docker.image("$ProjectPush":${env.BUILD_ID}).push()
                     }
                 }
             }
