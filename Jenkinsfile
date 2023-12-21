@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script{
                     docker.build(                        
-                        "-t ${ProjectPush}:${env.BUILD_ID}"         
+                        "${ProjectPush}:${env.BUILD_ID}"         
                     )
                 }
             }
