@@ -56,7 +56,7 @@ pipeline {
 
         stage('Publish') {
             steps{
-                sh 'echo $TokDeployCreds_PSW | sudo docker login -u $TokDeployCreds_USR --password-stdin'
+                sh 'echo ${TokDeployCreds_PSW} | docker login -u ${TokDeployCreds_USR} --password-stdin'
                 echo 'Login Completed' 
                 sh 'docker push ${ProjectPush}:$BUILD_NUMBER'                   
             }
