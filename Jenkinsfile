@@ -57,8 +57,7 @@ pipeline {
             steps {
                 script{
                     docker.build(                        
-                        "${ProjectPush}:${env.BUILD_ID}",
-                        "--no-cache"              
+                        "-t ${ProjectPush}:${env.BUILD_ID}"         
                     )
                 }
             }
