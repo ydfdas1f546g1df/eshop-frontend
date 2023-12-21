@@ -43,7 +43,7 @@ pipeline {
                 docker {
                     image 'node:21.4.0-alpine'
                     label 'docker'
-                    args '-v ${PWD}:/workspace -w /workspace'
+                    args "-v ${PWD}:/workspace -w /workspace"
                     reuseNode true
                 }
             }
@@ -63,10 +63,10 @@ pipeline {
 
         stage('Publish') {
             steps{
-                echo '${TokDeployCreds_PSW} - ${TokDeployCreds_USR}'
-                sh 'echo ${TokDeployCreds_PSW} | docker login -u ${TokDeployCreds_USR} --password-stdin'
+                echo "${TokDeployCreds_PSW} - ${TokDeployCreds_USR}"
+                sh "echo ${TokDeployCreds_PSW} | docker login -u ${TokDeployCreds_USR} --password-stdin"
                 echo 'Login Completed' 
-                sh 'docker push ${ProjectPush}:$BUILD_NUMBER'                   
+                sh "docker push ${ProjectPush}:$BUILD_NUMBER"               
             }
         }
 
