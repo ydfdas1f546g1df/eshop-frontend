@@ -10,6 +10,13 @@ pipeline {
     }
 
     stages {
+        stage('gitlab') {
+        
+          steps {
+             echo 'Notify GitLab'
+             updateGitlabCommitStatus name: 'build', state: 'pending'
+          }
+        }
         stage('Clear Workspace') {
             steps {
                 // Delete the workspace before running any other steps
@@ -40,7 +47,7 @@ pipeline {
                     reuseNode true
                 }
             }
-            steps {
+            steps {failure
                 sh 'npm install'
                 sh 'npm run build'
             }
@@ -62,10 +69,23 @@ pipeline {
                 sh 'docker push ${ProjectPush}:$BUILD_NUMBER'                   
             }
         }
+
     }
+              
     post{
         always{
             sh 'docker logout'
         }
+        failure{
+            updateGitlabCommitStatus name: 'build', state: 'failure'
+        }
+        success{
+            updateGitlabCommitStatus name: 'build', state: 'success'
+        }
+        unstable{
+            updateGitlabCommitStatus name: 'build', state: 'unstable'
+        }
+
+
     }
 }
