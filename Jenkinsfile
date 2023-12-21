@@ -56,9 +56,9 @@ pipeline {
         stage('Build-Container') {
             steps {
                 script{
-                    docker.build(
-                        "--no-cache",
-                        "${ProjectPush}:${env.BUILD_ID}"                    
+                    docker.build(                        
+                        "${ProjectPush}:${env.BUILD_ID}",
+                        "--no-cache"              
                     )
                 }
             }
