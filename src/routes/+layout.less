@@ -1,5 +1,5 @@
 @import "../lib/colors.less";
-
+@import "../lib/itemholder";
 
 html,
 body {
@@ -10,55 +10,23 @@ body {
     a {
         color: @link;
 
-        :visited {
+        &:visited {
             color: lighten(@link, 35%);
         }
     }
 
-    Section #end{
-        display: flex;
-        justify-content: flex-end;
+    Section{
         #login, #logout {
             color: @text;
             background-color: @secondary;
             width: auto;
-            :hover {
-                background-color: darken(@secondary, 20%);
+            &:hover {
+                background-color: darken(@secondary, 5%);
+                color: @text;
             }
         }
     }
 
-    #itemholder {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 20px;
 
-        .item {
-            margin-top: 10px;
-            margin-right: 10px;
-            background: @items;
-            border-radius: @border-radiuspx;
-
-            img {
-                border-top-left-radius: @border-radiuspx;
-                border-top-right-radius: @border-radiuspx;
-                width: 250px;
-                height: 250px;
-                object-fit: cover;
-            }
-
-            #item-text {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                p, h3 {
-                    color: @text;
-                }
-            }
-        }
-
-    }
 }
 

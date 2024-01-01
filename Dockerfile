@@ -13,5 +13,3 @@ RUN npm ci --omit dev
 EXPOSE 3000
 
 CMD ["node", "index.js"]
-
-#write a  while true loop in bash with the current time as output
