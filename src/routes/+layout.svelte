@@ -17,9 +17,10 @@
     } from '@smui/drawer';
     import List, {Item, Text, Graphic, Separator, Subheader} from '@smui/list';
     import "./+layout.less";
+    import "../theme/dark/_smui-theme.scss";
 
     let topAppBar: TopAppBar;
-    let darkTheme: boolean | undefiuned = undefined;
+    let darkTheme: boolean | undefined = undefined;
     let menuOpen: boolean = false;
     let drawer;
     let active: String = '';
@@ -44,13 +45,6 @@
 
 
 </script>
-
-
-
-<svelte:head>
-    <!-- SMUI Styles -->
-        <link rel="stylesheet" href="/smui-dark.css" />
-</svelte:head>
 
 <TopAppBar bind:this={topAppBar} variant="standard">
     <Row>

@@ -1,6 +1,6 @@
 <script lang="ts">
 
-        export let data;
+    export let data;
 
     import "./+page.less"
 </script>
@@ -9,7 +9,7 @@
 <div id="itemholder">
     {#each data.items as item}
         <div class="item" on:click={
-    () => {
+        () => {
         window.location.href = `/categorie/${item.id}`;
     }
     }>

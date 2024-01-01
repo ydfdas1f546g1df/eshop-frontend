@@ -17,12 +17,14 @@ pipeline {
              updateGitlabCommitStatus name: 'build', state: 'running'
           }
         }
+
         stage('Clear Workspace') {
             steps {
                 // Delete the workspace before running any other steps
                 deleteDir()
             }
         }   
+        
         stage('Prepare'){
             steps{
                 checkout scmGit(
