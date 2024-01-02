@@ -1,31 +1,69 @@
 @import "../lib/colors.less";
-@import "../lib/itemholder";
+@import "../lib/smui.less";
 
 html,
 body {
 
-    background-color: @background;
+  background-color: @background;
+
+  .mdc-drawer--open {
+    background-color: @surface;
 
 
-    a {
-        color: @link;
+    .mdc-drawer__header {
+      background-color: lighten(@surface, 5%);
 
-        &:visited {
-            color: lighten(@link, 35%);
+      .mdc-Drawer__title {
+        h1 {
+          color: @text;
         }
+
+      }
+
+
     }
 
-    Section{
-        #login, #logout {
-            color: @text;
-            background-color: @secondary;
-            width: auto;
-            &:hover {
-                background-color: darken(@secondary, 5%);
-                color: @text;
-            }
-        }
+    .mdc-drawer__subtitle {
+      color: @text;
     }
+
+    .mdc-deprecated-list-item {
+
+
+      &:hover {
+        background-color: darken(@surface, 5%);
+
+      }
+
+    }
+
+    * {
+      color: @text;
+    }
+
+  }
+
+
+  a {
+    color: @link;
+
+    &:visited {
+      color: lighten(@link, 35%);
+    }
+  }
+
+  Section {
+    #login, #logout {
+      color: @text;
+      background-color: @secondary;
+      width: auto;
+
+      &:hover {
+        background-color: darken(@secondary, 5%);
+        color: @text;
+      }
+    }
+  }
 
 
 }

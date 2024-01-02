@@ -25,7 +25,9 @@
     "@sveltejs/adapter-node": "^1.0.0-next.106",
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.20.4",
-    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
     "less": "^4.2.0",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.10.1",
@@ -36,9 +38,12 @@
     "svelte-check": "^3.4.3",
     "svelte-preprocess": "^5.1.1",
     "tslib": "^2.4.1",
-    "typescript": "^5.0.0",
+    "typescript": "^5.3.3",
     "vite": "^4.4.2",
     "vitest": "^0.34.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "svelte-material-ui": "^7.0.0-beta.16"
+  }
 }

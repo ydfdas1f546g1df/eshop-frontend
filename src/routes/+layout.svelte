@@ -17,7 +17,6 @@
     } from '@smui/drawer';
     import List, {Item, Text, Graphic, Separator, Subheader} from '@smui/list';
     import "./+layout.less";
-    import "../theme/smui.scss";
     import Button from "@smui/button";
 
     let topAppBar: TopAppBar;
@@ -45,8 +44,6 @@
 
 </script>
 
-<style>
-</style>
 
     <TopAppBar bind:this={topAppBar} variant="standard">
         <Row>

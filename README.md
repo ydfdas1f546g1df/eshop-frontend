@@ -1,4 +1,5 @@
 ![coverage](https://gitlab.internal.kuelling-sh.com/webshop/frontend/badges/master/coverage.svg?job=coverage)
+![Latest](https://gitlab.internal.kuelling-sh.com/webshop/frontend/badges/master/release.svg)
 
 # create-svelte
 
